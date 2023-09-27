@@ -4,6 +4,8 @@ const app = express();
 const port = 3000;
 const cors = require('cors');
 const upload = require('./upload');
+const fs = require('fs');
+
 
 // middleware
 app.use(express.json({ limit: '50mb' }));
@@ -12,14 +14,20 @@ app.use(cors());
 
 
 
-const message = async (req, res) =>{
-    console.log(req.body);
-    console.log(req.files);
-    res.send("Successfully uploaded files");
-}
-
 // routes
-app.post('/candidate', upload.array('cv'), message);
+app.post('/candidate', upload.array('cv'), (req, res) => {
+    
+    const fileInfo = {
+        filename: req.body.firstName,
+        lastname: req.body.lastName,
+        email: req.body.Email,
+        about: req.body.Description,
+    };
+
+    fs.writeFileSync(`./json/${fileInfo.filename + fileInfo.filename}.json`, JSON.stringify(fileInfo));
+
+    res.send('ok');
+});
 
 
 
