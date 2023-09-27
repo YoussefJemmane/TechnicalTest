@@ -24,7 +24,7 @@ app.post('/candidate', upload.array('cv'), (req, res) => {
         about: req.body.Description,
     };
 
-    fs.writeFileSync(`./json/${fileInfo.filename + fileInfo.filename}.json`, JSON.stringify(fileInfo));
+    fs.writeFileSync(`./json/${fileInfo.filename + fileInfo.lastName}.json`, JSON.stringify(fileInfo));
 
     res.send('ok');
 });
