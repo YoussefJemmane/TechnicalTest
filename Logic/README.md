@@ -1,3 +1,3 @@
 # Logic
 
-[![Image of my project](image.png)]
+![Image of my project](image.png)
