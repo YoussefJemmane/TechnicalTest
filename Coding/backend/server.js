@@ -18,13 +18,13 @@ app.use(cors());
 app.post('/candidate', upload.array('cv'), (req, res) => {
     
     const fileInfo = {
-        filename: req.body.firstName,
+        firstname: req.body.firstName,
         lastname: req.body.lastName,
         email: req.body.Email,
         about: req.body.Description,
     };
 
-    fs.writeFileSync(`./json/${fileInfo.filename + fileInfo.lastname}.json`, JSON.stringify(fileInfo));
+    fs.writeFileSync(`./json/${fileInfo.firstname + fileInfo.lastname}.json`, JSON.stringify(fileInfo));
 
     res.send('ok');
 });
